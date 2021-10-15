@@ -1,17 +1,15 @@
 name: deact_router
 description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# homepage: https://www.example.com
+version: 0.0.1
+homepage: https://github.com/exaby73/deact_router
 
 environment:
-  sdk: '>=2.14.3 <3.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
-
-# dependencies:
-#   path: ^1.8.0
+dependencies:
+  deact: ^1.0.0
 
 dev_dependencies:
+  lint: ^1.7.2
   lints: ^1.0.0
-  test: ^1.16.0
-dependencies: 
-  deact: ^1.0.0
+

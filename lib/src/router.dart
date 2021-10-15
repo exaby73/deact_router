@@ -15,9 +15,10 @@ DeactNode router({
         value = value.substring(0, value.length - 1);
       }
 
-      switch (value) {
-        default:
-          return notFoundRoute?.call(ctx) ?? notFound();
+      if (routes.containsKey(value)) {
+        return routes[value]!.call(ctx);
+      } else {
+        return notFoundRoute?.call(ctx) ?? notFound();
       }
     },
   );
