@@ -1,5 +1,5 @@
 name: deact_router
-description: A starting point for Dart libraries or applications.
+description: An client-side router for deact
 version: 0.1.0
 homepage: https://github.com/exaby73/deact_router
 
