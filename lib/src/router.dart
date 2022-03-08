@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:deact/deact.dart';
 import 'package:deact/deact_html52.dart';
+import 'package:deact_router/deact_router.dart';
 
 DeactNode router({
   required Map<String, FunctionalComponent> routes,
@@ -31,16 +32,16 @@ void changeTitle(String title) {
 void goto(ComponentContext ctx, String path) {
   final route = ctx.globalState<String>('route');
   route.set((state) => path);
-  window.history.pushState(null, '', path);
+  window.history.pushState(null, '', '#$path');
 }
 
 DeactNode notFound() {
   return fc(
     (ctx) => div(
       children: [
-        txt('Not found'),
-        div(
-          onclick: (event) => goto(ctx, '/'),
+        h1(children: [txt('Not found')]),
+        linkTo(
+          href: '/',
           children: [txt('Back to home')],
         ),
       ],
@@ -49,6 +50,8 @@ DeactNode notFound() {
 }
 
 String getNext() {
-  final next = UrlSearchParams(window.location.search).get('next');
-  return next ?? window.location.pathname ?? '/';
+  final url = Uri.parse(window.location.href);
+  var fragment = url.fragment.replaceFirst('#', '');
+  if (fragment.isEmpty) fragment = '/';
+  return fragment;
 }
